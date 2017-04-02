@@ -2,7 +2,7 @@
 
 cd /apps
 oldHash=$(cat sd-device.hash)
-wget --user getapp --password SeniorDesign2017 https://apps.jacobsieberg.info/sd-device.hash -O sd-device.hash --no-cache
+wget --user getapp --password SeniorDesign2017 https://apps.jacobsieberg.info/apps/sd-device.hash -O sd-device.hash --no-cache
 newHash=$(cat sd-device.hash)
 if [ "$oldHash" = "$newHash" ] 
     then
@@ -10,7 +10,7 @@ if [ "$oldHash" = "$newHash" ]
     exit
 fi
 cp sd-device/node.json node.json
-wget --user getapp --password SeniorDesign2017 https://apps.jacobsieberg.info/sd-device.zip -O sd-device.zip --no-cache
+wget --user getapp --password SeniorDesign2017 https://apps.jacobsieberg.info/apps/sd-device.zip -O sd-device.zip --no-cache
 systemctl stop sd-device
 rm -rf sd-device
 mkdir sd-device
