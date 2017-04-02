@@ -1,0 +1,10 @@
+[Unit]
+Description=SD device software
+ 
+[Service]
+ExecStart=/apps/sd-device/start.sh
+StandardOutput=null
+ 
+[Install]
+WantedBy=multi-user.target
+Alias=sd-device

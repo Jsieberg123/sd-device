@@ -1,0 +1,32 @@
+{
+    "name": "sd-device",
+    "version": "0.0.1",
+    "description": "Senior Design device software",
+    "main": "main.js",
+    "scripts": {
+        "test": "node test.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@gitlab.com/jsieberg123/sd-device.git"
+    },
+    "author": "Jacob Sieberg",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://gitlab.com/jsieberg123/sd-device/issues"
+    },
+    "homepage": "https://gitlab.com/jsieberg123/sd-device#README",
+    "dependencies": {
+        "bluebird": "^3.4.6",
+        "body-parser": "^1.15.2",
+        "cookie-parser": "^1.4.3",
+        "ejs": "^2.5.5",
+        "express": "^4.14.0",
+        "request": "^2.79.0",
+        "request-promise": "^4.1.1",
+        "spi-device": "^0.2.6",
+        "text-encoding": "^0.6.4",
+        "utils": "git+ssh://git@gitlab.com/jsieberg123/utils",
+        "ws": "^1.1.1"
+    }
+}
