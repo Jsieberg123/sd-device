@@ -4,6 +4,7 @@ pipeline {
     stages {
         stage('Deploy') {
             steps {
+                sh 'whoami'
                 sh 'zip -r sd-device.zip .'
                 sh 'md5sum sd-device.zip > sd-device.hash'
                 sh 'mv sd-device.zip /apps'
