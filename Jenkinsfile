@@ -4,10 +4,10 @@ pipeline {
     stages {
         stage('Deploy') {
             steps {
-                sh 'zip -r /apps/sd-device.zip .'
-                sh 'md5sum /apps/sd-device.zip > /apps/sd-device.hash'
-                sh 'mv -f sd-device.zip /apps/sd-device.zip'
-                sh 'mv sd-device.hash /apps/sd-device.hash'
+                sh 'zip -r sd-device.zip .'
+                sh 'md5sum sd-device.zip > sd-device.hash'
+                sh 'rsync --no-perms --omit-dir-times sd-device.zip /apps/sd-device.zip'
+                sh 'cp sd-device.hash /apps/sd-device.hash'
             }
         }
     }
