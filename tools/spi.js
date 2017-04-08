@@ -75,9 +75,9 @@ function scan() {
 
     var cards = [];
     for (var i = 0; i < 8; i++) {
-        var type = readByte(i, 0);
-        if (type != 0) {
-            var id = readUInt(i, 1);
+        var id = readUInt(i, 1);
+        if (id != 0) {
+            var type = readByte(i, 0);
             console.log(`Card found at ${i} type: ${type} id: ${id}`);
             cards.push({
                 id: id,
