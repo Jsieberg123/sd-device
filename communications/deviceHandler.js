@@ -1,14 +1,29 @@
 const settings = require("utils").Settings;
 const socket = require("./sockets.js");
 const fs = require('fs');
+const spi = require("../tools/spi.js");
+
+const typeDefs = ["", "current.html", "voltage.html", "switch.html", "temperature.html"];
 
 socket.on("get-cards", () => {
-    socket.Send("resp-get-cards", {
+    var cards = spi.Scan();
+    var carddisps = {
         "time1": { "display": "time.html", "id": -1 },
         "pos1": { "display": "switch.html", "id": 1, name: settings[`name-${1}`] || "Name" },
         "c1": { "display": "current.html", "id": 2, name: settings[`name-${2}`] || "Name" },
         "v1": { "display": "voltage.html", "id": 3, name: settings[`name-${3}`] || "Name" },
-    });
+    };
+
+    for (var i = 0; i < cards.length; i++) {
+        var card = cards[i];
+        carddisps[card.id.toString()] = {
+            display: typeDefs[card.type],
+            id: card.id,
+            name: settings[`name-${card.id}`] || "Name"
+        }
+    }
+
+    socket.Send("resp-get-cards", carddisps);
 });
 
 socket.on("get-time", id => {

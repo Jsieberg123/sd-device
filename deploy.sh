@@ -30,4 +30,5 @@ scp -r [!.]* pi@$ADDR:~/app
 if [ "$I" = y ]
     then ssh pi@$ADDR 'cd app && sudo npm install'
 fi
+ssh pi@$ADDR 'sudo killall node'
 ssh pi@$ADDR 'cd app && sudo node main.js'

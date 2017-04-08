@@ -24,8 +24,6 @@ function readBuffer(device, addr, length) {
     buffer[0] = device;
     buffer[1] = addr;
     var result = transfer(buffer);
-    console.log(buffer);
-    console.log(result);
     return result;
 }
 
@@ -46,6 +44,7 @@ function readString(device, addr, length) {
 module.exports.WriteByte = writeByte;
 module.exports.WriteUInt = writeUInt;
 module.exports.WriteString = writeString;
+module.exports.Scan = scan;
 
 function createWriteBuffer(device, addr, length) {
     var buffer = new Buffer(length + 2);
@@ -57,20 +56,36 @@ function createWriteBuffer(device, addr, length) {
 function writeByte(device, addr, byte) {
     var buffer = createWriteBuffer(device, addr, 1);
     buffer.writeUInt8(byte, 2);
-    console.log(buffer);
     transfer(buffer);
 }
 
 function writeUInt(device, addr, uint) {
     var buffer = createWriteBuffer(device, addr, 2);
     buffer.writeUInt16LE(uint, 2);
-    console.log(buffer);
     transfer(buffer);
 }
 
 function writeString(device, addr, string) {
     var buffer = createWriteBuffer(device, addr, string.length);
     buffer.write(string, 2, string.length, "UTF-8");
-    console.log(buffer);
     transfer(buffer);
+}
+
+function scan() {
+
+    var cards = [];
+    for (var i = 0; i < 8; i++) {
+        var type = readByte(i, 0);
+        if (type != 0) {
+            var id = readUInt(i, 1);
+            console.log(`Card found at ${i} type: ${type} id: ${id}`);
+            cards.push({
+                id: id,
+                addr: i,
+                type: type
+            });
+        }
+    }
+
+    return cards;
 }
