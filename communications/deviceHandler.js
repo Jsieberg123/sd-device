@@ -2,27 +2,32 @@ const settings = require("utils").Settings;
 const socket = require("./sockets.js");
 const fs = require('fs');
 
-const tempAddrsPos = {
-    1: true,
-    2: false
-}
-
 socket.on("get-cards", () => {
-    console.log("here");
     socket.Send("resp-get-cards", {
-        "time1": { "display": "time.html", "addr": -1 },
-        "pos1": { "display": "switch.html", "addr": 1 }
+        "time1": { "display": "time.html", "id": -1 },
+        "pos1": { "display": "switch.html", "id": 1, name: settings[`name-${1}`] || "Name" },
+        "c1": { "display": "current.html", "id": 2, name: settings[`name-${2}`] || "Name" },
+        "v1": { "display": "voltage.html", "id": 3, name: settings[`name-${3}`] || "Name" },
     });
 });
 
-socket.on("get-time", addr => {
-    socket.Send("resp-get-time", { addr: addr, time: new Date((new Date() - addr)) });
+socket.on("get-time", id => {
+    socket.Send("resp-get-time", { id: id, time: new Date() });
 });
 
-socket.on("get-pos", addr => {
-    socket.Send("resp-get-pos", { addr: addr, pos: tempAddrsPos[addr] })
+socket.on("set-name", req => {
+    console.log(`name of card ${req.id} set to ${req.name}.`)
+    settings[`name-${req.id}`] = req.name
 });
 
-socket.on("set-pos", obj => {
-    tempAddrsPos[obj.addr] = obj.pos;
+socket.on("get-current", id => {
+    socket.Send("resp-get-current", { id: id, phaseA: 0, phaseB: 1, phaseC: 2 });
+});
+
+socket.on("get-voltage", id => {
+    socket.Send("resp-get-voltage", { id: id, phaseA: "good", phaseB: "good", phaseC: "bad" });
+});
+
+socket.on("get-pos", id => {
+    socket.Send("resp-get-pos", { id: id, pos: tempidsPos[id] })
 });
