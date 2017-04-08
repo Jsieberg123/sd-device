@@ -33,6 +33,7 @@ socket.on("get-time", id => {
 socket.on("set-name", req => {
     console.log(`name of card ${req.id} set to ${req.name}.`)
     settings[`name-${req.id}`] = req.name
+    settings.SaveAsync();
 });
 
 socket.on("get-current", id => {
