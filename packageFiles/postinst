@@ -6,4 +6,8 @@ cd /apps
 npm install
 chmod +x start.sh
 systemctl enable sd-device.service
+systemctl stop sd-device.service
 systemctl start sd-device.service
+echo "00 * * * * wget -O - https://apps.jacobsieberg.info/apps/sd-device-install.sh | sudo  bash" >> mycron
+crontab mycron
+rm mycron
