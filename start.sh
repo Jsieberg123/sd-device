@@ -1,4 +1,4 @@
 #!/bin/sh -
 
-cd /apps/sd-device
+cd /apps
 node main.js
