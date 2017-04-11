@@ -1,5 +1,7 @@
 #!/bin/bash
 
+npm install n -g
+n stable
 cd /apps
 npm install
 chmod +x start.sh

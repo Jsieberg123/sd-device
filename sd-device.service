@@ -2,7 +2,7 @@
 Description=SD device software
  
 [Service]
-ExecStart=/apps/sd-device/start.sh
+ExecStart=/apps/start.sh
 StandardOutput=null
  
 [Install]
