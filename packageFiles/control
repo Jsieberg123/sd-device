@@ -3,6 +3,6 @@ Version: 1.0-1
 Section: base
 Priority: optional
 Architecture: armhf
-Depends: npm (>= 3.10.9)
+Depends: npm
 Maintainer: Jacob SIeberg <you@email.com>
 Description: Senior Design Device
