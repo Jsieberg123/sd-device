@@ -4,5 +4,5 @@ Section: base
 Priority: optional
 Architecture: armhf
 Depends: npm
-Maintainer: Jacob SIeberg <you@email.com>
+Maintainer: Jacob Sieberg <you@email.com>
 Description: Senior Design Device
