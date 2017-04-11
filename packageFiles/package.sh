@@ -17,7 +17,6 @@ cp -R tools $BASE/apps/tools
 cp -R web-interface $BASE/apps/web-interface
 cp app.json $BASE/apps/app.json
 cp main.js $BASE/apps/main.js
-cp node.json $BASE/apps/node.json
 cp package.json $BASE/apps/package.json
 cp start.sh $BASE/apps/start.sh
 
