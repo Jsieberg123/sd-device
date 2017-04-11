@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd /apps
-npm install n -g
+npm install
 chmod +x start.sh
 systemctl enable sd-device.service
 systemctl start sd-device.service
