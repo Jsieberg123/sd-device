@@ -1,0 +1,8 @@
+Package: sd-card
+Version: 1.0-1
+Section: base
+Priority: optional
+Architecture: armv7l
+Depends: npm (>= 3.10.9)
+Maintainer: Jacob SIeberg <you@email.com>
+Description: Senior Design Device

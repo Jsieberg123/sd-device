@@ -1,0 +1,6 @@
+#!/bin/bash
+
+npm install n -g
+chmod +x /apps/start.sh
+systemctl enable sd-device.service
+systemctl start sd-device.service

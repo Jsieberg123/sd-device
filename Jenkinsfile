@@ -4,10 +4,8 @@ pipeline {
     stages {
         stage('Deploy') {
             steps {
-                sh 'zip -r sd-device.zip .'
-                sh 'md5sum sd-device.zip > sd-device.hash'
-                sh 'cp -f sd-device.zip /apps/sd-device.zip'
-                sh 'cp -f sd-device.hash /apps/sd-device.hash'
+                sh 'packageFiles/pckage.sh $BUILD_NUMBER'
+                sh 'cp -f *.deb /apps/
             }
         }
     }
