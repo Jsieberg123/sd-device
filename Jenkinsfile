@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Deploy') {
             steps {
-                sh 'packageFiles/pckage.sh $BUILD_NUMBER'
+                sh 'packageFiles/package.sh $BUILD_NUMBER'
                 sh 'cp -f *.deb /apps/
             }
         }
