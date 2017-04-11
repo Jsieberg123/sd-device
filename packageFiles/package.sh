@@ -12,7 +12,7 @@ mkdir $BASE/lib/systemd
 mkdir $BASE/lib/systemd/system
 mkdir $BASE/DEBIAN
 
-cp -R communications $BASE/apps/communitcations
+cp -R communications $BASE/apps/communications
 cp -R tools $BASE/apps/tools
 cp -R web-interface $BASE/apps/web-interface
 cp app.json $BASE/apps/app.json
