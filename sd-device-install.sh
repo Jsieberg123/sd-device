@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Install using command "wget -O - https://apps.jacobsieberg.info/apps/sd-device-install.sh | sudo  bash"
+
 apt-get update
 apt-get install npm -y
 npm install n -g
