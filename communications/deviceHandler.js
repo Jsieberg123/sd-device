@@ -3,7 +3,7 @@ const socket = require("./sockets.js");
 const fs = require('fs');
 const spi = require("../tools/spi.js");
 
-const typeDefs = ["", "current.html", "voltage.html", "relay.html"];
+const typeDefs = ["", "current.html", "voltage.html", "", "relay.html"];
 
 const addrs = {}
 
