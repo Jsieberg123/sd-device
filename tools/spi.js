@@ -72,7 +72,7 @@ function writeString(device, addr, string) {
 }
 
 function scan() {
-
+    console.log("Scanning..");
     var cards = [];
     for (var i = 0; i < 8; i++) {
         var id = readUInt(i, 1);
