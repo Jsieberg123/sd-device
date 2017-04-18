@@ -67,10 +67,12 @@ socket.on("get-voltage", id => {
 
 socket.on("set-off", id => {
     var addr = addrs[id];
+    console.log("Turning off.")
     spi.WriteByte(addr, 11, 0xFF);
 });
 
 socket.on("set-on", id => {
     var addr = addrs[id];
+    console.log("Turning on.")
     spi.WriteByte(addr, 10, 0xFF);
 });
