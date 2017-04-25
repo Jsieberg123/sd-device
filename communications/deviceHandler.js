@@ -39,9 +39,10 @@ socket.on("set-name", req => {
 
 socket.on("get-current", id => {
     //read pp volts
-    var phaseA = spi.ReadUInt(addrs[id], 10);
-    var phaseB = spi.ReadUInt(addrs[id], 16);
-    var phaseC = spi.ReadUInt(addrs[id], 22);
+    var phaseA = spi.ReadUInt(addrs[id], 14);
+    var phaseB = spi.ReadByte(addrs[id], 14);
+    var phaseC = spi.ReadByte(addrs[id], 15);
+    //var phaseC = spi.ReadUInt(addrs[id], 22);
     socket.Send("resp-get-current", { id: id, phaseA: phaseA, phaseB: phaseB, phaseC: phaseC, temp1: 100, temp2: 100 });
 });
 
