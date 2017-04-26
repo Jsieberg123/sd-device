@@ -38,11 +38,10 @@ socket.on("set-name", req => {
 });
 
 socket.on("get-current", id => {
-    //read pp volts
+    //read pp current
     var phaseA = spi.ReadUInt(addrs[id], 14);
-    var phaseB = spi.ReadByte(addrs[id], 14);
-    var phaseC = spi.ReadByte(addrs[id], 15);
-    //var phaseC = spi.ReadUInt(addrs[id], 22);
+    var phaseB = spi.ReadUInt(addrs[id], 20);
+    var phaseC = spi.ReadUInt(addrs[id], 26);
     socket.Send("resp-get-current", { id: id, phaseA: phaseA, phaseB: phaseB, phaseC: phaseC, temp1: 100, temp2: 100 });
 });
 
@@ -52,15 +51,15 @@ socket.on("get-voltage", id => {
     var bread = spi.ReadUInt(addrs[id], 34);
     var cread = spi.ReadUInt(addrs[id], 40);
     var phaseA = "bad";
-    if (aread > 100) {
+    if (aread > 500) {
         phaseA = "good";
     }
     var phaseB = "bad";
-    if (spi.ReadUInt(addrs[id], 36) > 100) {
+    if (bread > 500) {
         phaseB = "good";
     }
     var phaseC = "bad";
-    if (spi.ReadUInt(addrs[id], 42) > 100) {
+    if (cread > 500) {
         phaseC = "good";
     }
     socket.Send("resp-get-voltage", { id: id, phaseA: phaseA, phaseB: phaseB, phaseC: phaseC, temp1: 100, temp2: 100 });
