@@ -8,7 +8,7 @@ function transfer(buffer) {
         sendBuffer: buffer,
         receiveBuffer: result,
         byteLength: buffer.length,
-        speedHz: 10000
+        speedHz: 5000
     }]
     spi.transferSync(message);
     var waitTill = new Date(new Date().getTime() + 50);
