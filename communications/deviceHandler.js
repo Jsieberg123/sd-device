@@ -1,14 +1,27 @@
 const settings = require("utils").Settings;
 const socket = require("./sockets.js");
 const fs = require('fs');
-const spi = require("../tools/spi.js");
+//const spi = require("../tools/spi.js");
 
 const typeDefs = ["", "current.html", "voltage.html", "", "relay.html"];
 
 const addrs = {}
 
 socket.on("get-cards", () => {
-    var cards = spi.Scan();
+    //var cards = spi.Scan();
+    var cards = [{
+        id: 1,
+        addr: 1,
+        type: 1
+    }, {
+        id: 2,
+        addr: 2,
+        type: 2
+    }, {
+        id: 4,
+        addr: 4,
+        type: 4
+    }, ];
     var carddisps = {
         "time1": { "display": "time.html", "id": -1 }
     };
@@ -39,27 +52,30 @@ socket.on("set-name", req => {
 
 socket.on("get-current", id => {
     //read pp volts
-    var phaseA = spi.ReadUInt(addrs[id], 10);
-    var phaseB = spi.ReadUInt(addrs[id], 16);
-    var phaseC = spi.ReadUInt(addrs[id], 22);
-    socket.Send("resp-get-current", { id: id, phaseA: phaseA, phaseB: phaseB, phaseC: phaseC, temp1: 100, temp2: 100 });
+    //var phaseA = spi.ReadUInt(addrs[id], 10);
+    //var phaseB = spi.ReadUInt(addrs[id], 16);
+    //var phaseC = spi.ReadUInt(addrs[id], 22);
+    socket.Send("resp-get-current", { id: id, phaseA: 1.3, phaseB: 1.2, phaseC: 1.3, temp1: 100, temp2: 110 });
 });
 
 socket.on("get-voltage", id => {
     //read max volts
-    var aread = spi.ReadUInt(addrs[id], 28);
-    var bread = spi.ReadUInt(addrs[id], 34);
-    var cread = spi.ReadUInt(addrs[id], 40);
+    //var aread = spi.ReadUInt(addrs[id], 28);
+    //var bread = spi.ReadUInt(addrs[id], 34);
+    //var cread = spi.ReadUInt(addrs[id], 40);
+    var aread = 500;
+    var bread = 500;
+    var cread = 500;
     var phaseA = "bad";
     if (aread > 100) {
         phaseA = "good";
     }
     var phaseB = "bad";
-    if (spi.ReadUInt(addrs[id], 36) > 100) {
+    if (bread > 100) {
         phaseB = "good";
     }
     var phaseC = "bad";
-    if (spi.ReadUInt(addrs[id], 42) > 100) {
+    if (cread > 100) {
         phaseC = "good";
     }
     socket.Send("resp-get-voltage", { id: id, phaseA: phaseA, phaseB: phaseB, phaseC: phaseC, temp1: 100, temp2: 100 });
@@ -67,12 +83,12 @@ socket.on("get-voltage", id => {
 
 socket.on("set-off", id => {
     var addr = addrs[id];
-    console.log("Turning off.")
-    spi.WriteByte(addr, 11, 0xFF);
+    console.log("Turning off.");
+    //spi.WriteByte(addr, 11, 0xFF);
 });
 
 socket.on("set-on", id => {
     var addr = addrs[id];
-    console.log("Turning on.")
-    spi.WriteByte(addr, 10, 0xFF);
+    console.log("Turning on.");
+    //spi.WriteByte(addr, 10, 0xFF);
 });
