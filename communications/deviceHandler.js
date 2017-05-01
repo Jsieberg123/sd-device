@@ -42,7 +42,7 @@ socket.on("get-current", id => {
     var phaseA = spi.ReadUInt(addrs[id], 14);
     var phaseB = spi.ReadUInt(addrs[id], 20);
     var phaseC = spi.ReadUInt(addrs[id], 26);
-    socket.Send("resp-get-current", { id: id, phaseA: phaseA * 0.005692, phaseB: phaseB * 0.005692, phaseC: phaseC * 0.005692, temp1: 100, temp2: 100 });
+    socket.Send("resp-get-current", { id: id, phaseA: phaseA * 0.002564, phaseB: phaseB * 0.002564, phaseC: phaseC * 0.002564, temp1: 100, temp2: 100 });
 });
 
 socket.on("get-voltage", id => {
