@@ -2,7 +2,7 @@ Package: sd-card
 Version: 1.0-1
 Section: base
 Priority: optional
-Architecture: armhf
+Architecture: armhf amd64
 Depends: npm
 Maintainer: Jacob Sieberg <jsieberg123@gmail.com>
 Description: Senior Design Device
